@@ -1,15 +1,36 @@
-const TodoCreate = () => {
-	return(
-		<form className=" flex gap-4 bg-white rounded-md overflow-hidden py-4 items-center px-4">
-		<span className="inline-block rounded-full border-2 h-5 w-5"></span>
-		<input
-			className="w-full text-gray-500 outline-none"
-			type="text"
-			placeholder="Crear una nueva tarea"
-		/>
-	</form>
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 
-	)
-}
+const TodoCreate = ({ createTodo }) => {
+    const [title, setTitle] = useState("");
 
-export default TodoCreate
+    const handleSubmitAddTodo = (e) => {
+        e.preventDefault();
+
+        if (!title.trim()) {
+            return setTitle("");
+        }
+        createTodo(title);
+        setTitle("");
+    };
+
+    return (
+        <form
+            onSubmit={handleSubmitAddTodo}
+            className=" flex gap-4 bg-white rounded-md overflow-hidden py-4 items-center px-4"
+        >
+            <span className="inline-block rounded-full border-2 h-5 w-5"></span>
+            <input
+                className="w-full text-gray-500 outline-none"
+                type="text"
+                placeholder="Crear una nueva tarea"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+        </form>
+    );
+};
+
+export default TodoCreate;
+
+// create todo y formulario controlado

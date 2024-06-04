@@ -31,11 +31,19 @@ const initialStateTodos = [
         title: "preparar café",
         completed: false,
     },
-
 ];
 
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
+
+    const createTodo = (title) => {
+        const newTodo = {
+            id: Date.now(),
+            title,
+            completed: false,
+        };
+        setTodos([...todos, newTodo]);
+    };
 
     return (
         <>
@@ -43,7 +51,7 @@ const App = () => {
                 <Header />
 
                 <main className="container mx-auto px-4 mt-8">
-                    <TodoCreate />
+                    <TodoCreate createTodo={createTodo}/>
                     <TodoList todos={todos} />
                     <TodoComputed />
                     <TodoFilter />
@@ -54,7 +62,6 @@ const App = () => {
                 </footer>
             </div>
         </>
-
     );
 };
 

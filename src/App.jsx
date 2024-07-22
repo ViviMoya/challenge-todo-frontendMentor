@@ -39,7 +39,7 @@ const App = () => {
     const createTodo = (title) => {
         const newTodo = {
             id: Date.now(),
-            title,
+            title: title.trim(),
             completed: false,
         };
         setTodos([...todos, newTodo]);
@@ -67,5 +67,5 @@ const App = () => {
 
 export default App;
 
-// quede en video 94
+// quede en video 104
 // []

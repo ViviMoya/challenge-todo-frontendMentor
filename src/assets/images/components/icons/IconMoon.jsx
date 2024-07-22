@@ -1,4 +1,4 @@
-const MoonIcon = ({ ...props }) => {
+const IconMoon = ({ ...props }) => {
 	/*rest operator de javascript (...props) es para guardar las propiedades si hay muchas ...ej tenemos fill, pero si tambien hay ancho,
 	y otras para no inicializar cada una se guardan en este rest operator... y se usan con el spreed operator 
 	*/
@@ -18,4 +18,4 @@ const MoonIcon = ({ ...props }) => {
         </svg>
     );
 };
-export default MoonIcon;
+export default IconMoon;

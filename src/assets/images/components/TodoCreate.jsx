@@ -33,4 +33,3 @@ const TodoCreate = ({ createTodo }) => {
 
 export default TodoCreate;
 
-// create todo y formulario controlado

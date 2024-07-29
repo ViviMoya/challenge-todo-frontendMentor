@@ -59,6 +59,27 @@ const App = () => {
 
     const computedItemsLeft = todos.filter((todo) => !todo.completed).length;
 
+    const clearCompleted = () => {
+        setTodos(todos.filter((todo) => !todo.completed));
+    };
+
+    const [filter, setFilter] = useState("all");
+
+    const changeFilter = (filter) => setFilter(filter);
+
+    const filterTodos = () => {
+        switch (filter) {
+            case "all":
+                return todos;
+            case "active":
+                return todos.filter((todo) => !todo.completed);
+            case "completed":
+                return todos.filter((todo) => todo.completed);
+            default:
+                return todos;
+        }
+    };
+
     return (
         <>
             <div className="min-h-screen bg-[url('src/assets/images/bg-mobileLight.jpg')] bg-no-repeat bg-contain bg-gray-300">
@@ -66,9 +87,16 @@ const App = () => {
 
                 <main className="container mx-auto px-4 mt-8">
                     <TodoCreate createTodo={createTodo} />
-                    <TodoList todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
-                    <TodoComputed computedItemsLeft={computedItemsLeft} />
-                    <TodoFilter />
+                    <TodoList
+                        todos={filterTodos()}
+                        removeTodo={removeTodo}
+                        updateTodo={updateTodo}
+                    />
+                    <TodoComputed
+                        computedItemsLeft={computedItemsLeft}
+                        clearCompleted={clearCompleted}
+                    />
+                    <TodoFilter changeFilter={changeFilter} filter={filter} />
                 </main>
 
                 <footer className="text-center mt-6">
@@ -81,5 +109,4 @@ const App = () => {
 
 export default App;
 
-// quede en video 104
 // []

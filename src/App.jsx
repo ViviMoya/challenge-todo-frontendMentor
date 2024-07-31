@@ -3,38 +3,16 @@ import Header from "./assets/images/components/Header";
 import TodoList from "./assets/images/components/TodoList";
 import TodoComputed from "./assets/images/components/TodoComputed";
 import TodoFilter from "./assets/images/components/TodoFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const initialStateTodos = [
-    {
-        id: 1,
-        title: "ir al gimnasio",
-        completed: true,
-    },
-    {
-        id: 2,
-        title: "ir a comprar",
-        completed: false,
-    },
-    {
-        id: 3,
-        title: "estudiar",
-        completed: false,
-    },
-    {
-        id: 4,
-        title: "preparar comida",
-        completed: false,
-    },
-    {
-        id: 5,
-        title: "preparar café",
-        completed: false,
-    },
-];
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
+
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     const createTodo = (title) => {
         const newTodo = {
@@ -109,4 +87,4 @@ const App = () => {
 
 export default App;
 
-// []
+// [] |
